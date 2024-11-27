@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Story App</string>
+
+    <string name="login">Masuk</string>
+    <string name="signup">Daftar</string>
+    <string name="name">Nama</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="logout">Keluar</string>
+    <string name="detail">Detail</string>
+    <string name="setting">Pengaturan</string>
+    <string name="add_story">Tambah Cerita</string>
+    <string name="upload">Unggah</string>
+    <string name="gallery">Galeri</string>
+    <string name="camera">Kamera</string>
+
+    <string name="error_empty_name">Nama tidak boleh kosong</string>
+    <string name="error_empty_email">Email tidak boleh kosong</string>
+    <string name="error_empty_password">Kata sandi tidak boleh kosong</string>
+    <string name="error_email_not_valid">Email tidak valid</string>
+    <string name="error_password_too_short">Kata sandi harus terdiri dari minimal 8 karakter</string>
+
+    <string name="register_success">Pendaftaran berhasil</string>
+    <string name="login_success">Masuk berhasil</string>
+    <string name="story_uploaded_successfully">Cerita berhasil diunggah</string>
+    <string name="logout_success">Berhasil keluar</string>
+
+    <string name="please_provide_description">Silakan tambahkan deskripsi</string>
+    <string name="please_select_an_image">Silakan pilih gambar</string>
+
+    <string name="permission_request_granted">Izin telah diberikan</string>
+    <string name="permission_request_denied">Izin ditolak</string>
+
+    <string name="failed_open_camera">Gagal membuka kamera</string>
+    <string name="failed_take_picture">Gagal mengambil gambar</string>
+
+    <string name="press_again_for_exit">Tekan sekali lagi untuk keluar</string>
+    <string name="invalid_story_id">ID cerita tidak valid</string>
+
+    <string name="description">Deskripsi…</string>
+    <string name="image_container">Kontainer gambar</string>
+    <string name="from">Dari: </string>
+    <string name="image_switch">Pengalih gambar</string>
+    <string name="button_fab">Tombol FAB</string>
+
+    <string name="login_title">Selamat datang di komunitas kami!</string>
+    <string name="login_description">Silakan masuk dan mulai jelajahi.</string>
+
+    <string name="main_title">Selamat Datang di Story App</string>
+    <string name="main_description">Semua dapat diakses dari sini.</string>
+    <string name="main_text">Silakan masuk atau daftar terlebih dahulu.</string>
+
+    <string name="register_title">Jadilah bagian dari komunitas kami, daftar sekarang!</string>
+    <string name="register_description">Silakan daftar untuk memulai.</string>
+</resources>

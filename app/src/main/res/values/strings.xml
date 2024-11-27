@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Story App</string>
+
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="logout">Logout</string>
+    <string name="detail">Detail</string>
+    <string name="setting">Setting</string>
+    <string name="add_story">Add Story</string>
+    <string name="upload">Upload</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+
+    <string name="error_empty_name">Name Cannot Be Blank</string>
+    <string name="error_empty_email">Email Cannot Be Blank</string>
+    <string name="error_empty_password">Passowrd Cannot Be Blank</string>
+    <string name="error_email_not_valid">Email Not Valid</string>
+    <string name="error_password_too_short">Passwords must contain at least 8 characters</string>
+
+    <string name="register_success">Register Succes</string>
+    <string name="login_success">Login Success</string>
+    <string name="story_uploaded_successfully">Story Upload Successfully</string>
+    <string name="logout_success">Logout successfully</string>
+
+    <string name="please_provide_description">Please provide description</string>
+    <string name="please_select_an_image">Please select an image</string>
+
+    <string name="permission_request_granted">Permission request granted</string>
+    <string name="permission_request_denied">Permission request denied</string>
+
+    <string name="failed_open_camera">Failed open camera</string>
+    <string name="failed_take_picture">Failed take picture</string>
+
+    <string name="press_again_for_exit">Press again for exit</string>
+    <string name="invalid_story_id">Invalid story id</string>
+
+    <string name="description">Description…</string>
+    <string name="image_container">Image container</string>
+    <string name="from">From : </string>
+    <string name="image_switch">Image switch</string>
+    <string name="button_fab">Button Fab</string>
+
+    <string name="login_title">Welcome to our community!</string>
+    <string name="login_description">Please log in and explore.</string>
+
+    <string name="main_title">Welcome to Story App</string>
+    <string name="main_description">Everything is accessible from here.</string>
+    <string name="main_text">Please log in or sign up first.</string>
+
+    <string name="register_title">Be a part of our community, sign up now!</string>
+    <string name="register_description">Please sign up to get started.</string>
+</resources>

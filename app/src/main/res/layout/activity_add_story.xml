@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.AddStoryActivity">
+
+    <include
+        android:id="@+id/toolbar_add"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/image_description_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_add">
+
+        <ImageView
+            android:id="@+id/preview_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/secondary"
+            android:contentDescription="@string/image_container"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_placeholder" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            app:boxStrokeColor="@color/secondary"
+            app:boxStrokeWidth="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/description_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:hint="@string/description" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/camera_button"
+        style="@style/CustomButtonSecond"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="5dp"
+        android:background="@color/background"
+        android:drawableStart="@drawable/ic_camera"
+        android:text="@string/camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gallery_button"
+        app:layout_constraintTop_toBottomOf="@+id/image_description_layout" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/gallery_button"
+        style="@style/CustomButton"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="5dp"
+        android:background="@color/background"
+        android:text="@string/gallery"
+        android:drawableStart="@drawable/ic_placeholder"
+        app:layout_constraintEnd_toStartOf="@+id/camera_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_description_layout" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/upload_button"
+        style="@style/CustomButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/background"
+        android:text="@string/upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
