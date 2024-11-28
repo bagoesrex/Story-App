@@ -30,7 +30,7 @@ class NameEditText @JvmOverloads constructor(
                 }
 
                 if (s.isNullOrEmpty()) {
-                    parentTextInputLayout?.error = context.getString(R.string.error_empty_email)
+                    parentTextInputLayout?.error = context.getString(R.string.error_empty_name)
                 } else {
                     parentTextInputLayout?.error = null
                 }
