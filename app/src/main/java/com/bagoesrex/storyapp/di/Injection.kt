@@ -10,23 +10,11 @@ object Injection {
 
     fun authRepository(context: Context): AuthRepository {
         val pref = UserPreferences(context)
-        val token = pref.getToken()
-        val apiService = if (token != null) {
-            ApiConfig.getApiService(token)
-        } else {
-            ApiConfig.getApiService("")
-        }
-        return AuthRepository.getInstance(apiService)
+        return AuthRepository.getInstance(ApiConfig.getApiService(pref))
     }
 
     fun storyRepository(context: Context): StoryRepository {
         val pref = UserPreferences(context)
-        val token = pref.getToken()
-        val apiService = if (token != null) {
-            ApiConfig.getApiService(token)
-        } else {
-            ApiConfig.getApiService("")
-        }
-        return StoryRepository.getInstance(apiService)
+        return StoryRepository.getInstance(ApiConfig.getApiService(pref))
     }
 }

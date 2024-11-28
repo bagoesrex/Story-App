@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.bagoesrex.storyapp.data.pref.UserPreferences
 
 class ApiConfig {
 
@@ -13,7 +14,7 @@ class ApiConfig {
 
         private const val BASE_URL = BuildConfig.BASE_URL
 
-        fun getApiService(token: String): ApiService {
+        fun getApiService(userPreferences: UserPreferences): ApiService {
             val loggingInterceptor =
                 if (BuildConfig.DEBUG) {
                     HttpLoggingInterceptor()
@@ -23,6 +24,8 @@ class ApiConfig {
                 }
 
             val authInterceptor = Interceptor { chain ->
+                val token = userPreferences.getToken() ?: ""
+
                 val req = chain.request()
                 val requestHeaders = req.newBuilder()
                     .addHeader("Authorization", "Bearer $token")
