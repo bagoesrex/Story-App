@@ -1,5 +1,6 @@
 package com.bagoesrex.storyapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,11 +34,20 @@ class StoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupUI()
         setupRecyclerView()
         observeViewModel()
         storyViewModel.getStories()
-
     }
+
+    private fun setupUI() {
+        binding.addFab.setOnClickListener {
+            Intent(requireContext(), AddStoryActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+    }
+
 
     private fun setupRecyclerView() {
         binding.storyRecyclerView.layoutManager = LinearLayoutManager(requireContext())

@@ -9,30 +9,27 @@ import com.bagoesrex.storyapp.data.repository.StoryRepository
 import kotlinx.coroutines.launch
 import com.bagoesrex.storyapp.data.Result
 
-class StoryViewModel(private val storyRepository: StoryRepository) : ViewModel() {
+class StoryMapsViewModel(private val storyRepository: StoryRepository) : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _storyList = MutableLiveData<List<ListStoryItem>>()
-    val storyList: LiveData<List<ListStoryItem>> = _storyList
+    private val _stories = MutableLiveData<Result<List<ListStoryItem>>>()
+    val stories: LiveData<Result<List<ListStoryItem>>> = _stories
 
-    fun getStories() {
+    fun getAllStoriesWithMap(location: Int = 1) {
         _isLoading.value = true
 
         viewModelScope.launch {
             try {
-                when (val result = storyRepository.getAllStories()) {
-                    is Result.Success -> {
-                        _storyList.value = result.data.listStory
-                    }
-                    is Result.Error -> {
-                        _storyList.value = emptyList()
-                    }
-                    Result.Loading -> _isLoading.value = true
+                val result = storyRepository.getAllStoriesWithMap(location)
+                _stories.value = when (result) {
+                    is Result.Success -> Result.Success(result.data.listStory)
+                    is Result.Error -> Result.Error("Failed to fetch stories")
+                    Result.Loading -> null
                 }
             } catch (e: Exception) {
-                _storyList.value = emptyList()
+                _stories.value = Result.Error("An error occurred: ${e.message}")
             } finally {
                 _isLoading.value = false
             }

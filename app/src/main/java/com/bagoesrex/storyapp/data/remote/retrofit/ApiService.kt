@@ -10,6 +10,7 @@ import okhttp3.RequestBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -50,4 +51,9 @@ interface ApiService {
         @Part("description") description: RequestBody,
         @Part photo: MultipartBody.Part,
     ): StoryUploadResponse
+
+    @GET("stories")
+    suspend fun getAllStoriesWithMap(
+        @Query("location") location: Int = 1
+    ): StoryResponse
 }

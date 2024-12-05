@@ -20,8 +20,9 @@ class MainActivity : AppCompatActivity() {
         userPreferences = UserPreferences(this)
 
         if (!userPreferences.getToken().isNullOrEmpty()) {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            Intent(this, HomeActivity::class.java).also {
+                startActivity(it)
+            }
             finish()
         }
 

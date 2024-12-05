@@ -58,6 +58,28 @@ class StoryRepository private constructor(private val apiService: ApiService) {
         }
     }
 
+    suspend fun getAllStoriesWithMap(
+        location: Int = 1
+    ): Result<StoryResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = apiService.getAllStoriesWithMap(location)
+
+                if (!response.error!!) {
+                    Result.Success(response)
+                } else {
+                    Result.Error(response.message ?: "Unknown error occurred")
+                }
+            } catch (e: IOException) {
+                Result.Error("Network error: ${e.message}")
+            } catch (e: HttpException) {
+                Result.Error("HTTP error: ${e.message}")
+            } catch (e: Exception) {
+                Result.Error("An unexpected error occurred: ${e.message}")
+            }
+        }
+    }
+
     suspend fun uploadStory(
         description: RequestBody,
         photo: MultipartBody.Part,

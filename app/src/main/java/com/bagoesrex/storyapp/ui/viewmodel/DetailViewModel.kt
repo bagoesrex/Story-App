@@ -41,6 +41,8 @@ class DetailViewModel(private val storyRepository: StoryRepository) : ViewModel(
             } catch (e: Exception) {
                 _isLoading.value = false
                 _errorMessage.value = "An unexpected error occurred: ${e.message}"
+            } finally {
+                _isLoading.value = false
             }
         }
     }

@@ -31,8 +31,19 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         userPreferences = UserPreferences(this)
-        replaceFragment()
+
+        if (savedInstanceState != null) {
+            selectedFragmentIndex = savedInstanceState.getInt("selectedFragmentIndex", 0)
+        }
+
+        binding.mainBottomBar.itemActiveIndex = selectedFragmentIndex
+        loadFragment(selectedFragmentIndex)
         setupUI()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("selectedFragmentIndex", selectedFragmentIndex)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,11 +82,6 @@ class HomeActivity : AppCompatActivity() {
     private fun setupUI() {
         setSupportActionBar(binding.toolbarHome.toolbar)
 
-        binding.addFab.setOnClickListener {
-            val intent = Intent(this, AddStoryActivity::class.java)
-            startActivity(intent)
-        }
-
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (doubleBackToExitPressed) {
@@ -94,11 +100,9 @@ class HomeActivity : AppCompatActivity() {
         binding.mainBottomBar.setOnItemSelectedListener { position ->
             if (position != selectedFragmentIndex) {
                 selectedFragmentIndex = position
-
                 loadFragment(position)
             }
         }
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -107,20 +111,18 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment = StoryFragment()) {
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
             .commit()
     }
 
     private fun loadFragment(index: Int) {
         val selectedFragment = when (index) {
             0 -> StoryFragment()
-            1 -> StoryMapFragment()
+            1 -> StoryMapsFragment()
             else -> StoryFragment()
         }
-
         replaceFragment(selectedFragment)
     }
 }
