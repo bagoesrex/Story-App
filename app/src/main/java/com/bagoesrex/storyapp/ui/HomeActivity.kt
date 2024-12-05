@@ -11,6 +11,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.bagoesrex.storyapp.R
 import com.bagoesrex.storyapp.data.pref.UserPreferences
 import com.bagoesrex.storyapp.databinding.ActivityHomeBinding
@@ -21,6 +22,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var userPreferences: UserPreferences
     private var doubleBackToExitPressed = false
+
+    private var selectedFragmentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +91,15 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
+        binding.mainBottomBar.setOnItemSelectedListener { position ->
+            if (position != selectedFragmentIndex) {
+                selectedFragmentIndex = position
+
+                loadFragment(position)
+            }
+        }
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -95,11 +107,20 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment() {
-        val storyFragment = StoryFragment()
+    private fun replaceFragment(fragment: Fragment = StoryFragment()) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, storyFragment)
+            .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun loadFragment(index: Int) {
+        val selectedFragment = when (index) {
+            0 -> StoryFragment()
+            1 -> StoryMapFragment()
+            else -> StoryFragment()
+        }
+
+        replaceFragment(selectedFragment)
     }
 }

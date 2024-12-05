@@ -20,6 +20,7 @@ constraintlayout = "2.2.0"
 picasso = "2.71828"
 retrofit = "2.11.0"
 runner = "1.6.1"
+smoothbottombar = "1.7.9"
 
 [libraries]
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
@@ -46,6 +47,7 @@ androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.r
 camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraxVersion" }
 camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraxVersion" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+smoothbottombar = { module = "com.github.ibrahimsn98:SmoothBottomBar", version.ref = "smoothbottombar" }
 
 
 [plugins]

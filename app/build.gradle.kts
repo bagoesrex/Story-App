@@ -55,35 +55,34 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation (libs.androidx.cardview)
+    implementation(libs.androidx.cardview)
 
-    dependencies {
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
-        // Retrofit
-        implementation (libs.retrofit)
-        implementation (libs.converter.gson)
-        implementation (libs.logging.interceptor)
+    // Viewmodel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.fragment.ktx)
 
-        // Viewmodel
-        implementation (libs.androidx.lifecycle.viewmodel.ktx)
-        implementation (libs.androidx.lifecycle.livedata.ktx)
-        implementation (libs.androidx.fragment.ktx)
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
 
-        // DataStore
-        implementation (libs.androidx.datastore.preferences)
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
-        // Coroutines
-        implementation (libs.kotlinx.coroutines.core)
-        implementation (libs.kotlinx.coroutines.android)
+    // Picasso
+    implementation(libs.picasso)
 
-        // Picasso
-        implementation (libs.picasso)
+    // CameraX
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.camera.view)
 
-        // CameraX
-        implementation(libs.androidx.camera.camera2)
-        implementation(libs.camera.lifecycle)
-        implementation(libs.camera.view)
-    }
-
+    // BottomBar
+    implementation(libs.smoothbottombar)
 
 }

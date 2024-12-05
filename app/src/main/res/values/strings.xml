@@ -52,4 +52,8 @@
 
     <string name="register_title">Be a part of our community, sign up now!</string>
     <string name="register_description">Please sign up to get started.</string>
+    <string name="home">Home</string>
+    <string name="maps">Maps</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
