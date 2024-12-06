@@ -22,6 +22,8 @@ class StoryAdapterPaging
             binding.descriptionTextView.text = story.description
             Picasso.get()
                 .load(story.photoUrl)
+                .resize(600, 600)
+                .centerCrop()
                 .into(binding.storyImageView)
 
             binding.root.setOnClickListener {
