@@ -11,6 +11,7 @@ import com.bagoesrex.storyapp.R
 import com.bagoesrex.storyapp.databinding.ActivityDetailBinding
 import com.bagoesrex.storyapp.ui.viewmodel.DetailViewModel
 import com.bagoesrex.storyapp.ui.viewmodel.factory.DetailViewModelFactory
+import com.bagoesrex.storyapp.utils.dateFormatter
 import com.bagoesrex.storyapp.utils.showToast
 import com.squareup.picasso.Picasso
 
@@ -73,7 +74,7 @@ class DetailActivity : AppCompatActivity() {
                         .load(storyDetail.story.photoUrl)
                         .into(binding.previewImageView)
                     binding.nameTextView.text = storyDetail.story.name
-                    binding.clockTextView.text = storyDetail.story.createdAt
+                    binding.clockTextView.text = dateFormatter(storyDetail.story.createdAt)
                     binding.descriptionTextView.text = storyDetail.story.description
                 }
             }
