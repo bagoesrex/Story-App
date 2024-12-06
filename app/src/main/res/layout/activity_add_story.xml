@@ -69,12 +69,35 @@
         android:layout_height="50dp"
         android:layout_marginHorizontal="5dp"
         android:background="@color/background"
-        android:text="@string/gallery"
         android:drawableStart="@drawable/ic_placeholder"
+        android:text="@string/gallery"
         app:layout_constraintEnd_toStartOf="@+id/camera_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_description_layout" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/location_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/add_location_optional"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gallery_button" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/location_switch"
+        android:layout_width="0dp"
+        android:paddingEnd="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/location_text_view"
+        app:layout_constraintTop_toBottomOf="@id/camera_button"
+        tools:ignore="RtlSymmetry" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/upload_button"

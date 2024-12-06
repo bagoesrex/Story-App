@@ -28,6 +28,8 @@ import com.bagoesrex.storyapp.data.Result
 import com.bagoesrex.storyapp.ui.CameraActivity.Companion.CAMERAX_RESULT
 import com.bagoesrex.storyapp.utils.reduceFileImage
 import com.bagoesrex.storyapp.utils.uriToFile
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import okhttp3.RequestBody.Companion.asRequestBody
 
 class AddStoryActivity : AppCompatActivity() {
@@ -37,6 +39,9 @@ class AddStoryActivity : AppCompatActivity() {
         AddStoryViewModelFactory.getInstance(this)
     }
     private var currentImageUri: Uri? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var currentLat: Double? = null
+    private var currentLon: Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +51,8 @@ class AddStoryActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.add_story)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         val savedImageUri = addStoryViewModel.getImageUri()
         if (savedImageUri != null) {
@@ -69,6 +76,15 @@ class AddStoryActivity : AppCompatActivity() {
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCameraX() }
         binding.uploadButton.setOnClickListener { uploadImage() }
+
+        binding.locationSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                getCurrentLocation()
+            } else {
+                currentLat = null
+                currentLon = null
+            }
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -121,12 +137,16 @@ class AddStoryActivity : AppCompatActivity() {
 
         val descriptionRequestBody = description.toRequestBody("text/plain".toMediaTypeOrNull())
         val photoRequestBody = compressedFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        val photoMultipart =
-            MultipartBody.Part.createFormData("photo", compressedFile.name, photoRequestBody)
+        val photoMultipart = MultipartBody.Part.createFormData("photo", compressedFile.name, photoRequestBody)
+
+        val latRequestBody = currentLat?.toString()?.toRequestBody("text/plain".toMediaTypeOrNull())
+        val lonRequestBody = currentLon?.toString()?.toRequestBody("text/plain".toMediaTypeOrNull())
 
         addStoryViewModel.uploadStory(
             descriptionRequestBody,
             photoMultipart,
+            latRequestBody,
+            lonRequestBody
         )
     }
 
@@ -188,6 +208,37 @@ class AddStoryActivity : AppCompatActivity() {
             binding.previewImageView.setImageURI(imageUri)
         } else {
             Log.d("Image URI", "No image to show")
+        }
+    }
+
+    private fun getCurrentLocation() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location ->
+                    if (location != null) {
+                        currentLat = location.latitude
+                        currentLon = location.longitude
+                        showToast(this, "Location Added")
+                    } else {
+                        showToast(this, "Location not found")
+                    }
+                }
+        } else {
+            requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
+    private val requestLocationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            getCurrentLocation()
+        } else {
+            showToast(this, "Permission Location Denied")
         }
     }
 

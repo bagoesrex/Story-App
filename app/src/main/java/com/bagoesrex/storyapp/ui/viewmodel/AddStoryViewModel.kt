@@ -33,11 +33,13 @@ class AddStoryViewModel(private val storyRepository: StoryRepository) : ViewMode
     fun uploadStory(
         description: RequestBody,
         photo: MultipartBody.Part,
+        lat: RequestBody?,
+        lon: RequestBody?
     ) {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val result = storyRepository.uploadStory(description, photo)
+                val result = storyRepository.uploadStory(description, photo, lat, lon)
                 _uploadResult.value = result
             } catch (e: Exception) {
                 _uploadResult.value = Result.Error(e.message ?: "Unknown error occurred")

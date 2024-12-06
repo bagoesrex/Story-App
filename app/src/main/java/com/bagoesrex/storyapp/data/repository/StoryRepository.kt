@@ -83,10 +83,12 @@ class StoryRepository private constructor(private val apiService: ApiService) {
     suspend fun uploadStory(
         description: RequestBody,
         photo: MultipartBody.Part,
+        lat: RequestBody?,
+        lon: RequestBody?
     ): Result<StoryUploadResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = apiService.uploadStory(description, photo)
+                val response = apiService.uploadStory(description, photo, lat, lon)
 
                 if (!response.error) {
                     Result.Success(response)

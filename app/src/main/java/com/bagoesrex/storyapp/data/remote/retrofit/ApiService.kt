@@ -50,6 +50,8 @@ interface ApiService {
     suspend fun uploadStory(
         @Part("description") description: RequestBody,
         @Part photo: MultipartBody.Part,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?
     ): StoryUploadResponse
 
     @GET("stories")

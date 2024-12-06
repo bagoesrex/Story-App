@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/background"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_detail">
 
@@ -41,35 +41,94 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:id="@+id/from_text_view"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/person_card"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/from"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/preview_image_view" />
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                app:cardBackgroundColor="@color/secondary"
+                app:layout_constraintEnd_toStartOf="@id/clock_card"
+                app:layout_constraintTop_toBottomOf="@id/preview_image_view">
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:id="@+id/name_text_view"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="5dp"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_container"
+                        android:src="@drawable/ic_person" />
+
+                    <TextView
+                        android:id="@+id/name_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:maxWidth="80dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@+id/from_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/preview_image_view" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/clock_card"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:fontFamily="sans-serif"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toRightOf="@+id/from_text_view"
-                app:layout_constraintTop_toBottomOf="@id/preview_image_view" />
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/preview_image_view">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="5dp"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_container"
+                        android:src="@drawable/ic_clock" />
+
+                    <TextView
+                        android:id="@+id/clock_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@+id/from_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/preview_image_view" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/description_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="monospace"
                 android:textSize="15sp"
-                app:layout_constraintTop_toBottomOf="@id/name_text_view" />
+                app:layout_constraintTop_toBottomOf="@id/clock_card" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

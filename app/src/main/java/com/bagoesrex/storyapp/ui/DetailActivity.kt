@@ -73,6 +73,7 @@ class DetailActivity : AppCompatActivity() {
                         .load(storyDetail.story.photoUrl)
                         .into(binding.previewImageView)
                     binding.nameTextView.text = storyDetail.story.name
+                    binding.clockTextView.text = storyDetail.story.createdAt
                     binding.descriptionTextView.text = storyDetail.story.description
                 }
             }
