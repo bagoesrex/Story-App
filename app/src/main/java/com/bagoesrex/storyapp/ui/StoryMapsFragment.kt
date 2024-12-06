@@ -91,7 +91,6 @@ class StoryMapsFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
         mMap.uiSettings.isZoomControlsEnabled = true
 
-        // Fetch stories after the map is ready
         storyMapViewModel.getAllStoriesWithMap()
     }
 

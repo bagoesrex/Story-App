@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagoesrex.storyapp.databinding.FragmentStoryBinding
-import com.bagoesrex.storyapp.ui.adapter.StoryAdapter
+import com.bagoesrex.storyapp.ui.adapter.StoryAdapterPaging
 import com.bagoesrex.storyapp.ui.viewmodel.factory.StoryViewModelFactory
 import com.bagoesrex.storyapp.ui.viewmodel.StoryViewModel
 
@@ -19,7 +19,7 @@ class StoryFragment : Fragment() {
         StoryViewModelFactory.getInstance(requireActivity())
     }
 
-    private lateinit var storyAdapter: StoryAdapter
+    private lateinit var storyAdapter: StoryAdapterPaging
     private var _binding: FragmentStoryBinding? = null
     private val binding get() = _binding!!
 
@@ -52,18 +52,15 @@ class StoryFragment : Fragment() {
     private fun setupRecyclerView() {
         binding.storyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        storyAdapter = StoryAdapter()
+        storyAdapter = StoryAdapterPaging()
         binding.storyRecyclerView.adapter = storyAdapter
     }
 
     private fun observeViewModel() {
-        storyViewModel.storyList.observe(viewLifecycleOwner) { storyList ->
-            storyAdapter.submitList(storyList)
-        }
-
-        storyViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        }
+        storyViewModel.getStories()
+            .observe(viewLifecycleOwner) { pagingData ->
+                storyAdapter.submitData(lifecycle, pagingData)
+            }
     }
 
     override fun onDestroyView() {
