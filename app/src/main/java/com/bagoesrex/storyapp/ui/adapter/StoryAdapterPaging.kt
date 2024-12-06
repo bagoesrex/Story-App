@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bagoesrex.storyapp.data.remote.response.ListStoryItem
+import com.bagoesrex.storyapp.data.local.database.ListStoryItem
 import com.bagoesrex.storyapp.databinding.StoryItemBinding
 import com.bagoesrex.storyapp.ui.DetailActivity
 import com.squareup.picasso.Picasso

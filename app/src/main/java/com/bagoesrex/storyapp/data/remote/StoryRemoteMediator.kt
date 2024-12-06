@@ -5,8 +5,8 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.bagoesrex.storyapp.data.local.database.ListStoryItem
 import com.bagoesrex.storyapp.data.local.database.StoryDatabase
-import com.bagoesrex.storyapp.data.remote.response.ListStoryItem
 import com.bagoesrex.storyapp.data.remote.retrofit.ApiService
 
 @OptIn(ExperimentalPagingApi::class)

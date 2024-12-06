@@ -13,7 +13,7 @@ import java.io.IOException
 import com.bagoesrex.storyapp.data.Result
 import com.bagoesrex.storyapp.data.local.database.StoryDatabase
 import com.bagoesrex.storyapp.data.remote.StoryRemoteMediator
-import com.bagoesrex.storyapp.data.remote.response.ListStoryItem
+import com.bagoesrex.storyapp.data.local.database.ListStoryItem
 import com.bagoesrex.storyapp.data.remote.response.StoryDetailResponse
 import com.bagoesrex.storyapp.data.remote.response.StoryUploadResponse
 import okhttp3.MultipartBody

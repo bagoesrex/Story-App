@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.bagoesrex.storyapp.data.remote.response.ListStoryItem
+import com.bagoesrex.storyapp.data.local.database.ListStoryItem
 import com.bagoesrex.storyapp.data.repository.StoryRepository
 
 class StoryViewModel(private val storyRepository: StoryRepository) : ViewModel() {
