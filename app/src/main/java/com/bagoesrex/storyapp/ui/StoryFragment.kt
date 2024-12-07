@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagoesrex.storyapp.databinding.FragmentStoryBinding
+import com.bagoesrex.storyapp.ui.adapter.LoadingStateAdapter
 import com.bagoesrex.storyapp.ui.adapter.StoryAdapterPaging
 import com.bagoesrex.storyapp.ui.viewmodel.factory.StoryViewModelFactory
 import com.bagoesrex.storyapp.ui.viewmodel.StoryViewModel
+import com.bagoesrex.storyapp.utils.showToast
 
 class StoryFragment : Fragment() {
 
@@ -53,7 +56,26 @@ class StoryFragment : Fragment() {
         binding.storyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         storyAdapter = StoryAdapterPaging()
-        binding.storyRecyclerView.adapter = storyAdapter
+        binding.storyRecyclerView.adapter = storyAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                storyAdapter.retry()
+            }
+        )
+        storyAdapter.addLoadStateListener { loadState ->
+            binding.progressBar.visibility =
+                if (loadState.source.refresh is LoadState.Loading) View.VISIBLE else View.GONE
+
+            binding.emptyImageView.visibility =
+                if (loadState.source.refresh is LoadState.NotLoading && storyAdapter.itemCount == 0) View.GONE else View.VISIBLE
+
+            val errorState = loadState.source.refresh as? LoadState.Error
+                ?: loadState.source.append as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+
+            errorState?.let {
+                it.error.localizedMessage?.let { it1 -> showToast(requireContext(), it1) }
+            }
+        }
     }
 
     private fun observeViewModel() {

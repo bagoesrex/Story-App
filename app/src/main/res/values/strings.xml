@@ -58,4 +58,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_stories">No story</string>
     <string name="add_location_optional">Add Location (Optional)</string>
+    <string name="timeout">Timeout</string>
+    <string name="retry">Retry</string>
 </resources>
