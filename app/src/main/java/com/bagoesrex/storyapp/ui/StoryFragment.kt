@@ -1,10 +1,12 @@
 package com.bagoesrex.storyapp.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
@@ -26,6 +28,19 @@ class StoryFragment : Fragment() {
     private var _binding: FragmentStoryBinding? = null
     private val binding get() = _binding!!
 
+    private val afterAddStoryLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            storyAdapter.refresh()
+            storyAdapter.addLoadStateListener { loadState ->
+                if (loadState.source.refresh is LoadState.NotLoading) {
+                    binding.storyRecyclerView.smoothScrollToPosition(0)
+                }
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +61,7 @@ class StoryFragment : Fragment() {
     private fun setupUI() {
         binding.addFab.setOnClickListener {
             Intent(requireContext(), AddStoryActivity::class.java).also {
-                startActivity(it)
+                afterAddStoryLauncher.launch(it)
             }
         }
     }

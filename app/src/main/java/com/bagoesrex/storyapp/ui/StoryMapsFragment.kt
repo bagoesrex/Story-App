@@ -1,8 +1,10 @@
 package com.bagoesrex.storyapp.ui
 
 import android.content.Intent
+import android.content.res.Resources
 import androidx.fragment.app.Fragment
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +22,7 @@ import com.bagoesrex.storyapp.utils.showToast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
 class StoryMapsFragment : Fragment(), OnMapReadyCallback {
@@ -96,6 +99,7 @@ class StoryMapsFragment : Fragment(), OnMapReadyCallback {
 
     private fun addAllMarker(stories: List<ListStoryItem>) {
         if (::mMap.isInitialized) {
+            setMapStyle()
             val boundsBuilder = LatLngBounds.Builder()
 
             stories.forEach { story ->
@@ -116,6 +120,23 @@ class StoryMapsFragment : Fragment(), OnMapReadyCallback {
             val bounds = boundsBuilder.build()
             val padding = 100
             mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
+        }
+    }
+
+    private fun setMapStyle() {
+        try {
+            val success =
+                mMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                        requireContext(),
+                        R.raw.style_map
+                    )
+                )
+            if (!success) {
+                showToast(requireContext(), "Style parsing failed.")
+            }
+        } catch (exception: Resources.NotFoundException) {
+            showToast(requireContext(), "Can't find style. Error: $exception")
         }
     }
 
