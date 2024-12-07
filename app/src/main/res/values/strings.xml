@@ -16,11 +16,11 @@
 
     <string name="error_empty_name">Name Cannot Be Blank</string>
     <string name="error_empty_email">Email Cannot Be Blank</string>
-    <string name="error_empty_password">Passowrd Cannot Be Blank</string>
+    <string name="error_empty_password">Password Cannot Be Blank</string>
     <string name="error_email_not_valid">Email Not Valid</string>
     <string name="error_password_too_short">Passwords must contain at least 8 characters</string>
 
-    <string name="register_success">Register Succes</string>
+    <string name="register_success">Register Success</string>
     <string name="login_success">Login Success</string>
     <string name="story_uploaded_successfully">Story Upload Successfully</string>
     <string name="logout_success">Logout successfully</string>
@@ -52,12 +52,12 @@
 
     <string name="register_title">Be a part of our community, sign up now!</string>
     <string name="register_description">Please sign up to get started.</string>
-    <string name="home">Home</string>
-    <string name="maps">Maps</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="maps" translatable="false">Maps</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="no_stories">No story</string>
-    <string name="add_location_optional">Add Location (Optional)</string>
-    <string name="timeout">Timeout</string>
-    <string name="retry">Retry</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="no_stories" translatable="false">No story</string>
+    <string name="add_location_optional" translatable="false">Add Location (Optional)</string>
+    <string name="timeout" translatable="false">Timeout</string>
+    <string name="retry" translatable="false">Retry</string>
 </resources>

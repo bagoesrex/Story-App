@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.res.Resources
 import androidx.fragment.app.Fragment
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -105,16 +104,14 @@ class StoryMapsFragment : Fragment(), OnMapReadyCallback {
             stories.forEach { story ->
                 val lat = story.lat
                 val lon = story.lon
-                if (lat != null && lon != null) {
-                    val latLng = LatLng(lat, lon)
-                    mMap.addMarker(
-                        MarkerOptions()
-                            .position(latLng)
-                            .title(story.name)
-                            .snippet(story.description)
-                    )
-                    boundsBuilder.include(latLng)
-                }
+                val latLng = LatLng(lat, lon)
+                mMap.addMarker(
+                    MarkerOptions()
+                        .position(latLng)
+                        .title(story.name)
+                        .snippet(story.description)
+                )
+                boundsBuilder.include(latLng)
             }
 
             val bounds = boundsBuilder.build()

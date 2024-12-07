@@ -35,10 +35,10 @@ class StoryRepository private constructor(
             try {
                 val response = apiService.getStories(page, size, location)
 
-                if (!response.error!!) {
+                if (!response.error) {
                     Result.Success(response)
                 } else {
-                    Result.Error(response.message ?: "Unknown error occurred")
+                    Result.Error(response.message)
                 }
             } catch (e: IOException) {
                 Result.Error("Network error: ${e.message}")
@@ -77,10 +77,10 @@ class StoryRepository private constructor(
             try {
                 val response = apiService.getAllStoriesWithMap(location)
 
-                if (!response.error!!) {
+                if (!response.error) {
                     Result.Success(response)
                 } else {
-                    Result.Error(response.message ?: "Unknown error occurred")
+                    Result.Error(response.message)
                 }
             } catch (e: IOException) {
                 Result.Error("Network error: ${e.message}")
